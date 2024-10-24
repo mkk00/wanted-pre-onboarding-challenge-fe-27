@@ -1,3 +1,4 @@
+import AuthSuggestion from '@/components/AuthSuggestion'
 import {
   AuthLayout,
   AuthContainer,
@@ -7,7 +8,6 @@ import {
   Input,
   Button,
 } from '@/pages/auth/Auth.styled'
-
 import { Title } from '@/styles/common.styled'
 
 function Login() {
@@ -30,6 +30,7 @@ function Login() {
           </InputRow>
           <Button type="submit">로그인</Button>
         </FormWrapper>
+        <AuthSuggestion />
       </AuthContainer>
     </AuthLayout>
   )

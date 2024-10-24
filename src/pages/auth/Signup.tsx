@@ -1,3 +1,4 @@
+import AuthSuggestion from '@/components/AuthSuggestion'
 import {
   AuthLayout,
   AuthContainer,
@@ -7,7 +8,6 @@ import {
   Input,
   Button,
 } from '@/pages/auth/Auth.styled'
-
 import { Title } from '@/styles/common.styled'
 
 function Signup() {
@@ -38,6 +38,7 @@ function Signup() {
           </InputRow>
           <Button type="submit">회원가입</Button>
         </FormWrapper>
+        <AuthSuggestion isAuth />
       </AuthContainer>
     </AuthLayout>
   )
