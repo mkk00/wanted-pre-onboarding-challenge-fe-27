@@ -17,7 +17,7 @@ export const AuthContainer = styled.div`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `
 
-export const FormWrapper = styled.div`
+export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -60,4 +60,10 @@ export const Button = styled.button`
   &:hover {
     background-color: #357abd;
   }
+`
+
+export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 0.7rem;
+  margin: 0;
 `
