@@ -1,5 +1,3 @@
-import { useForm } from '@/hooks/useForm'
-import AuthSuggestion from '@/components/AuthSuggestion'
 import {
   AuthLayout,
   AuthContainer,
@@ -10,12 +8,31 @@ import {
   Button,
   ErrorMessage,
 } from '@/pages/auth/Auth.styled'
+import { useForm } from '@/hooks/useForm'
+import AuthSuggestion from '@/components/AuthSuggestion'
 import { Title } from '@/styles/common.styled'
+import { signupApi } from '@/api/authApi'
+import { useNavigate } from 'react-router-dom'
+import { AxiosError } from 'axios'
 
 function Signup() {
-  const onSubmit = () => {
-    alert('회원가입 완료')
-    // TODO: 데이터 로직
+  const navigate = useNavigate()
+
+  const onSubmit = async () => {
+    if (!errors || Object.keys(errors).length === 0)
+      try {
+        const res = await signupApi({
+          email: values.email,
+          password: values.password,
+        })
+        if (res) {
+          alert(res.message)
+          navigate('/auth/login')
+        }
+      } catch (err) {
+        if (err instanceof AxiosError && err.response)
+          alert(err.response.data.details)
+      }
   }
 
   const { values, errors, handleChange, handleUnForcus, handleSubmit } =
@@ -28,6 +45,7 @@ function Signup() {
       'signup',
       onSubmit,
     )
+
   return (
     <AuthLayout>
       <AuthContainer>
