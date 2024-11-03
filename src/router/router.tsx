@@ -1,10 +1,17 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Home, Login, Signup } from '@/pages/index'
+import { TodoList, Login, Signup } from '@/pages/index'
+import TodoDetail from '@/components/TodoDetail'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <TodoList />,
+    children: [
+      {
+        path: ':id',
+        element: <TodoDetail />,
+      },
+    ],
   },
   {
     path: '/auth/login',
