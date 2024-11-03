@@ -1,10 +1,6 @@
 import {
-  AuthLayout,
-  AuthContainer,
-  FormWrapper,
-  InputRow,
-  Label,
-  Input,
+  AuthWrapper,
+  Form,
   Button,
   ErrorMessage,
 } from '@/pages/auth/Auth.styled'
@@ -30,7 +26,7 @@ function Login() {
 
           if (res.token) {
             localStorage.setItem('token', res.token)
-            navigate('/todo')
+            navigate('/')
           }
         }
       } catch (err) {
@@ -50,14 +46,14 @@ function Login() {
     )
 
   return (
-    <AuthLayout>
-      <AuthContainer>
+    <AuthWrapper.Layout>
+      <AuthWrapper.Container>
         <Title>로그인</Title>
-        <FormWrapper onSubmit={handleSubmit}>
+        <Form.FormWrapper onSubmit={handleSubmit}>
           <div>
-            <InputRow>
-              <Label htmlFor="email">이메일</Label>
-              <Input
+            <Form.InputRow>
+              <Form.Label htmlFor="email">이메일</Form.Label>
+              <Form.Input
                 type="email"
                 id="email"
                 name="email"
@@ -66,13 +62,13 @@ function Login() {
                 onChange={handleChange}
                 onBlur={handleUnForcus}
               />
-            </InputRow>
+            </Form.InputRow>
             {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
           </div>
           <div>
-            <InputRow>
-              <Label htmlFor="password">비밀번호</Label>
-              <Input
+            <Form.InputRow>
+              <Form.Label htmlFor="password">비밀번호</Form.Label>
+              <Form.Input
                 type="password"
                 id="password"
                 name="password"
@@ -81,14 +77,14 @@ function Login() {
                 onChange={handleChange}
                 onBlur={handleUnForcus}
               />
-            </InputRow>
+            </Form.InputRow>
             {errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
           </div>
           <Button type="submit">로그인</Button>
-        </FormWrapper>
+        </Form.FormWrapper>
         <AuthSuggestion />
-      </AuthContainer>
-    </AuthLayout>
+      </AuthWrapper.Container>
+    </AuthWrapper.Layout>
   )
 }
 

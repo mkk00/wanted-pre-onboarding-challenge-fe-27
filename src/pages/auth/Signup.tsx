@@ -1,10 +1,6 @@
 import {
-  AuthLayout,
-  AuthContainer,
-  FormWrapper,
-  InputRow,
-  Label,
-  Input,
+  AuthWrapper,
+  Form,
   Button,
   ErrorMessage,
 } from '@/pages/auth/Auth.styled'
@@ -47,14 +43,14 @@ function Signup() {
     )
 
   return (
-    <AuthLayout>
-      <AuthContainer>
+    <AuthWrapper.Layout>
+      <AuthWrapper.Container>
         <Title>회원가입</Title>
-        <FormWrapper onSubmit={handleSubmit}>
+        <Form.FormWrapper onSubmit={handleSubmit}>
           <div>
-            <InputRow>
-              <Label htmlFor="email">이메일</Label>
-              <Input
+            <Form.InputRow>
+              <Form.Label htmlFor="email">이메일</Form.Label>
+              <Form.Input
                 type="email"
                 id="email"
                 name="email"
@@ -63,13 +59,13 @@ function Signup() {
                 onChange={handleChange}
                 onBlur={handleUnForcus}
               />
-            </InputRow>
+            </Form.InputRow>
             {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
           </div>
           <div>
-            <InputRow>
-              <Label htmlFor="password">비밀번호</Label>
-              <Input
+            <Form.InputRow>
+              <Form.Label htmlFor="password">비밀번호</Form.Label>
+              <Form.Input
                 type="password"
                 id="password"
                 name="password"
@@ -78,13 +74,13 @@ function Signup() {
                 onChange={handleChange}
                 onBlur={handleUnForcus}
               />
-            </InputRow>
+            </Form.InputRow>
             {errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
           </div>
           <div>
-            <InputRow>
-              <Label htmlFor="passwordConfirm">비밀번호 확인</Label>
-              <Input
+            <Form.InputRow>
+              <Form.Label htmlFor="passwordConfirm">비밀번호 확인</Form.Label>
+              <Form.Input
                 type="password"
                 name="passwordConfirm"
                 id="passwordConfirm"
@@ -93,16 +89,16 @@ function Signup() {
                 onChange={handleChange}
                 onBlur={handleUnForcus}
               />
-            </InputRow>
+            </Form.InputRow>
             {errors.passwordConfirm && (
               <ErrorMessage>{errors.passwordConfirm}</ErrorMessage>
             )}
           </div>
           <Button type="submit">회원가입</Button>
-        </FormWrapper>
+        </Form.FormWrapper>
         <AuthSuggestion isAuth />
-      </AuthContainer>
-    </AuthLayout>
+      </AuthWrapper.Container>
+    </AuthWrapper.Layout>
   )
 }
 
