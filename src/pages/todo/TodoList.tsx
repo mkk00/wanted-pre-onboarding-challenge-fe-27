@@ -6,13 +6,25 @@ import { useNavigate, useParams } from 'react-router-dom'
 import PageLayout from '@/components/layout/PageLayout'
 import { MouseEvent, useEffect } from 'react'
 import useTodoStore from '@/store/useTodoStore'
+import { useUserStore } from '@/store/useAuthStore'
 
 function TodoList() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
+  const user = useUserStore((state) => state.user)
   const getTodoList = useTodoStore((state) => state.getTodoList)
   const deleteTodoList = useTodoStore((state) => state.deleteTodoList)
   const data = useTodoStore((state) => state.data)
+
+  const handleAddTodo = (e: MouseEvent<HTMLButtonElement>) => {
+    if (!user?.token) {
+      alert('로그인이 필요한 서비스입니다.')
+      navigate('/auth/login')
+    } else {
+      e.stopPropagation()
+      navigate('/todos')
+    }
+  }
 
   const handleEditTodo = (e: MouseEvent<HTMLButtonElement>, itemId: string) => {
     e.stopPropagation()
@@ -40,13 +52,7 @@ function TodoList() {
         <TodoWrapper.Container>
           <Todo.Header>
             <h2>할 일 목록</h2>
-            <Button.Add
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation()
-                navigate('/todos')
-              }}
-            >
+            <Button.Add type="button" onClick={handleAddTodo}>
               추가
             </Button.Add>
           </Todo.Header>
