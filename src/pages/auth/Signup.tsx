@@ -1,6 +1,6 @@
 import { Container, Form, Button, ErrorMessage } from '@/pages/auth/Auth.styled'
 import { useAuthForm } from '@/hooks/useAuthForm'
-import AuthSuggestion from '@/components/AuthSuggestion'
+import AuthSuggestion from '@/components/auth/AuthSuggestion'
 import { Title } from '@/styles/common.styled'
 import { signupApi } from '@/api/authApi'
 import { useNavigate } from 'react-router-dom'

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { TodoList, Login, Signup } from '@/pages/index'
-import TodoDetail from '@/components/TodoDetail'
+import TodoDetail from '@/components/todo/TodoDetail'
 
 const router = createBrowserRouter([
   {

@@ -29,6 +29,7 @@ const Header = () => {
         <button
           type="button"
           style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
+          onClick={() => navigate('/')}
         >
           <LuListTodo size={25} /> My Todo
         </button>
