@@ -7,6 +7,7 @@ import {
 } from '@/styles/common.styled'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { LuListTodo } from 'react-icons/lu'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -24,10 +25,22 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <AuthWrapper>
+        <button
+          type="button"
+          style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
+        >
+          <LuListTodo size={25} /> My Todo
+        </button>
         {user?.token ? (
           <ButtonWrapper>
             <p>{user.email}</p>
-            <AuthButton type="button" onClick={handleLogout}>
+            <AuthButton
+              type="button"
+              onClick={() => {
+                handleLogout()
+                window.location.reload()
+              }}
+            >
               로그아웃
             </AuthButton>
           </ButtonWrapper>
