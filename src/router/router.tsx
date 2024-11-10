@@ -15,6 +15,10 @@ const router = createBrowserRouter([
         path: '/todos/:id',
         element: <TodoDetail />,
       },
+      {
+        path: 'todos/:id/edit',
+        element: <TodoDetail />,
+      },
     ],
   },
   {

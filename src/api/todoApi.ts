@@ -16,13 +16,13 @@ const createTodoApi = async (formData: TodoProps) => {
   return response.data.data
 }
 
-const updateTodoApi = async (id: string) => {
-  const response = await instance.put(`/todos:${id}`)
+const updateTodoApi = async (id: string, formData: TodoProps) => {
+  const response = await instance.put(`/todos/${id}`, formData)
   return response.data.data
 }
 
 const deleteTodoApi = async (id: string) => {
-  const response = await instance.delete(`/todos:${id}`)
+  const response = await instance.delete(`/todos/${id}`)
   return response.data.data
 }
 

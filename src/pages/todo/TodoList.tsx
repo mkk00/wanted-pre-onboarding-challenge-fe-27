@@ -22,7 +22,13 @@ function TodoList() {
         <TodoWrapper.Container>
           <Todo.Header>
             <h2>할 일 목록</h2>
-            <Button.Add type="button" onClick={() => navigate('/todos')}>
+            <Button.Add
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                navigate('/todos')
+              }}
+            >
               추가
             </Button.Add>
           </Todo.Header>
@@ -40,7 +46,13 @@ function TodoList() {
                   </TodoWrapper.ContentWrapper>
                   <Button.ButtonWrapper>
                     <Button.IconButton type="button">
-                      <BiSolidEditAlt size={20} />
+                      <BiSolidEditAlt
+                        size={20}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          navigate(`/todos/${item.id}/edit`)
+                        }}
+                      />
                     </Button.IconButton>
                     <Button.IconButton type="button">
                       <BiTrash size={20} />

@@ -24,11 +24,8 @@ const useTodoStore = create<TodoStore>((set) => ({
     }
   },
   getTodoById: async (id: string) => {
-    const response: TodoListProps = await getTodoByIdApi(id)
-    if (response) {
-      console.log('id:', response)
-      set({ idData: response })
-    }
+    const response = await getTodoByIdApi(id)
+    set({ idData: response })
   },
 }))
 

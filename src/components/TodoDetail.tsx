@@ -8,28 +8,32 @@ import {
 import { IoCloseOutline } from 'react-icons/io5'
 import { useTodoForm } from '@/hooks/useTodoForm'
 import { useNavigate, useParams } from 'react-router-dom'
-import { createTodoApi } from '@/api/todoApi'
+import { createTodoApi, updateTodoApi } from '@/api/todoApi'
 import useTodoStore from '@/store/useTodoStore'
 import { useEffect } from 'react'
 
 const TodoDetail = () => {
   const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
+  const edit = window.location.pathname.includes('edit')
   const getTodoList = useTodoStore((state) => state.getTodoList)
   const getTodoById = useTodoStore((state) => state.getTodoById)
   const idData = useTodoStore((state) => state.idData)
 
   const onSubmit = async () => {
-    const response = await createTodoApi({
-      title: values.title,
-      content: values.content,
-    })
-
-    console.log(response)
-    if (response) {
-      getTodoList()
-      navigate('/')
+    if (id && edit) {
+      await updateTodoApi(id, {
+        title: values.title,
+        content: values.content,
+      })
+    } else {
+      await createTodoApi({
+        title: values.title,
+        content: values.content,
+      })
     }
+    getTodoList()
+    navigate('/')
   }
 
   const { values, setValues, handleChange, handleSubmit, handleReset } =
@@ -42,14 +46,22 @@ const TodoDetail = () => {
     )
 
   useEffect(() => {
-    if (id) {
-      getTodoById(id)
+    if (id) getTodoById(id)
+    console.log(edit)
+  }, [id, edit])
+
+  useEffect(() => {
+    if (
+      idData.title &&
+      idData.content &&
+      (idData.title !== values.title || idData.content !== values.content)
+    ) {
       setValues({
         title: idData?.title,
         content: idData?.content,
       })
     }
-  }, [id])
+  }, [idData, setValues])
   return (
     <TodoWrapper.Container>
       <Todo.Header>
@@ -81,7 +93,9 @@ const TodoDetail = () => {
           />
         </Detail.DetailContent>
         <Button.ButtonWrapper>
-          <Button.FormButton type="submit">저장</Button.FormButton>
+          <Button.FormButton type="submit">
+            {edit ? '수정' : '저장'}
+          </Button.FormButton>
           <Button.FormButton
             type="button"
             $variant="secondary"
