@@ -14,9 +14,10 @@ const flexCenter = css`
 // wrapper
 const Layout = styled.div`
   ${flexColumn}
+  width: 650px;
   align-items: center;
   gap: 50px;
-  padding: 100px 0;
+  padding: 50px 0;
   margin-bottom: 10px;
   min-height: 100vh;
   background-color: #f5f5f5;
@@ -24,7 +25,6 @@ const Layout = styled.div`
 
 const Container = styled.section`
   width: 100%;
-  max-width: 600px;
   background: white;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -184,7 +184,7 @@ const CloseButton = styled.button`
   }
 `
 
-const FormButton = styled.button<{ variant?: 'primary' | 'secondary' }>`
+const FormButton = styled.button<{ $variant?: 'primary' | 'secondary' }>`
   width: 100%;
   padding: 0.8rem 1.5rem;
   border-radius: 4px;
@@ -192,8 +192,8 @@ const FormButton = styled.button<{ variant?: 'primary' | 'secondary' }>`
   cursor: pointer;
   border: none;
 
-  ${({ variant = 'primary' }) =>
-    variant === 'primary'
+  ${({ $variant = 'primary' }) =>
+    $variant === 'primary'
       ? `
         background-color: #4a90e2;
         color: white;
