@@ -15,13 +15,13 @@ import { useEffect } from 'react'
 const TodoDetail = () => {
   const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
-  const edit = window.location.pathname.includes('edit')
+  const isEdit = window.location.pathname.includes('edit')
   const getTodoList = useTodoStore((state) => state.getTodoList)
   const getTodoById = useTodoStore((state) => state.getTodoById)
   const idData = useTodoStore((state) => state.idData)
 
   const onSubmit = async () => {
-    if (id && edit) {
+    if (id && isEdit) {
       await updateTodoApi(id, {
         title: values.title,
         content: values.content,
@@ -47,8 +47,8 @@ const TodoDetail = () => {
 
   useEffect(() => {
     if (id) getTodoById(id)
-    console.log(edit)
-  }, [id, edit])
+    console.log(isEdit)
+  }, [id, isEdit])
 
   useEffect(() => {
     if (
@@ -62,6 +62,15 @@ const TodoDetail = () => {
       })
     }
   }, [idData, setValues])
+
+  useEffect(() => {
+    if (!id) {
+      setValues({
+        title: '',
+        content: '',
+      })
+    }
+  }, [id])
   return (
     <TodoWrapper.Container>
       <Todo.Header>
@@ -94,12 +103,15 @@ const TodoDetail = () => {
         </Detail.DetailContent>
         <Button.ButtonWrapper>
           <Button.FormButton type="submit">
-            {edit ? '수정' : '저장'}
+            {isEdit ? '수정' : '저장'}
           </Button.FormButton>
           <Button.FormButton
             type="button"
             $variant="secondary"
-            onClick={() => handleReset()}
+            onClick={() => {
+              handleReset()
+              navigate('/todos')
+            }}
           >
             취소
           </Button.FormButton>
