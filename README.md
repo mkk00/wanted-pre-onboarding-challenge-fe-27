@@ -2,6 +2,7 @@
 
 <img src="https://github.com/user-attachments/assets/4136c190-7ec5-4523-a34f-00d55597805f" />
 
+
 ## install & start
 
 - 개발 서버
@@ -127,3 +128,48 @@ yarn start # localhost:8080
 
 API 요청 시 인증 정보를 자동으로 포함하여 각각의 엔드포인트에 요청
 인터셉터를 통해 Authorization 헤더가 자동으로 추가되므로 별도로 처리할 필요가 없음
+
+<br/>
+
+
+## useForm 커스텀 훅 사용
+
+폼 이벤트 처리를 재사용 가능하고 일관성 있게 관리하기 위해 커스텀 훅을 사용
+
+- 예) useTodoForm.ts
+  ```javascript
+  export const useTodoForm = (initialValues: TodoProps, onSubmit: () => void) => {
+    const [values, setValues] = useState(initialValues)
+  
+    const handleChange = (
+      e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+      const { name, value } = e.target
+  
+      setValues((prevValues) => ({
+        ...prevValues,
+        [name]: value,
+      }))
+    }
+  
+    const handleReset = () => {
+      setValues(initialValues)
+    }
+  
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault()
+  
+      // onSubmit 실행 로직
+    }
+  
+    return {
+      values,
+      setValues,
+      handleChange,
+      handleSubmit,
+      handleReset,
+    }
+  }
+  ```
+
+
