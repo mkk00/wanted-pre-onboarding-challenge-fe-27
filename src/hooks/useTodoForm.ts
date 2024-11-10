@@ -33,6 +33,7 @@ export const useTodoForm = (initialValues: TodoProps, onSubmit: () => void) => {
 
   return {
     values,
+    setValues,
     handleChange,
     handleSubmit,
     handleReset,

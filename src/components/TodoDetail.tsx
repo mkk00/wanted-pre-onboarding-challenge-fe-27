@@ -7,13 +7,17 @@ import {
 } from '@/pages/todo/Todo.styled'
 import { IoCloseOutline } from 'react-icons/io5'
 import { useTodoForm } from '@/hooks/useTodoForm'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { createTodoApi } from '@/api/todoApi'
 import useTodoStore from '@/store/useTodoStore'
+import { useEffect } from 'react'
 
 const TodoDetail = () => {
   const navigate = useNavigate()
+  const { id } = useParams<{ id: string }>()
   const getTodoList = useTodoStore((state) => state.getTodoList)
+  const getTodoById = useTodoStore((state) => state.getTodoById)
+  const idData = useTodoStore((state) => state.idData)
 
   const onSubmit = async () => {
     const response = await createTodoApi({
@@ -28,13 +32,24 @@ const TodoDetail = () => {
     }
   }
 
-  const { values, handleChange, handleSubmit, handleReset } = useTodoForm(
-    {
-      title: '',
-      content: '',
-    },
-    onSubmit,
-  )
+  const { values, setValues, handleChange, handleSubmit, handleReset } =
+    useTodoForm(
+      {
+        title: '',
+        content: '',
+      },
+      onSubmit,
+    )
+
+  useEffect(() => {
+    if (id) {
+      getTodoById(id)
+      setValues({
+        title: idData?.title,
+        content: idData?.content,
+      })
+    }
+  }, [id])
   return (
     <TodoWrapper.Container>
       <Todo.Header>

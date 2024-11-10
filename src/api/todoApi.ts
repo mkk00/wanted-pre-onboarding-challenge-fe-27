@@ -7,7 +7,7 @@ const getTodoApi = async () => {
 }
 
 const getTodoByIdApi = async (id: string) => {
-  const response = await instance.get(`/todos:${id}`)
+  const response = await instance.get(`/todos/${id}`)
   return response.data.data
 }
 

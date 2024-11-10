@@ -20,11 +20,11 @@ const Header = () => {
 
   useEffect(() => {
     console.log(user)
-  }, [])
+  }, [user?.token])
   return (
     <HeaderWrapper>
       <AuthWrapper>
-        {user ? (
+        {user?.token ? (
           <ButtonWrapper>
             <p>{user.email}</p>
             <AuthButton type="button" onClick={handleLogout}>

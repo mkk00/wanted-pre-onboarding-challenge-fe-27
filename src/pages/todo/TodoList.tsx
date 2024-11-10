@@ -22,14 +22,17 @@ function TodoList() {
         <TodoWrapper.Container>
           <Todo.Header>
             <h2>할 일 목록</h2>
-            <Button.Add type="button" onClick={() => navigate('/todo')}>
+            <Button.Add type="button" onClick={() => navigate('/todos')}>
               추가
             </Button.Add>
           </Todo.Header>
           <TodoWrapper.CardWrapper>
             {data.length > 0 ? (
               data.map((item) => (
-                <Todo.Card key={item.id}>
+                <Todo.Card
+                  key={item.id}
+                  onClick={() => navigate(`/todos/${item.id}`)}
+                >
                   <Form.Checkbox type="checkbox" />
                   <TodoWrapper.ContentWrapper>
                     <Todo.Title>{item.title}</Todo.Title>

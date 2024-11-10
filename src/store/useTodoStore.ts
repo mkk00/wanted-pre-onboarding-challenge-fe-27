@@ -1,16 +1,21 @@
 // store.ts
 import { create } from 'zustand'
-import { TodoListProps } from '@/interfaces/TodoProps'
-import { getTodoApi, createTodoApi } from '@/api/todoApi'
+import { TodoListProps, TodoProps } from '@/interfaces/TodoProps'
+import { getTodoApi, getTodoByIdApi } from '@/api/todoApi'
 
 interface TodoStore {
   data: TodoListProps[]
+  idData: TodoProps
   getTodoList: () => Promise<void>
-  // addTodo: (todo: TodoListProps) => void
+  getTodoById: (id: string) => Promise<void>
 }
 
 const useTodoStore = create<TodoStore>((set) => ({
   data: [],
+  idData: {
+    title: '',
+    content: '',
+  },
   getTodoList: async () => {
     const response = await getTodoApi()
     if (response) {
@@ -18,10 +23,13 @@ const useTodoStore = create<TodoStore>((set) => ({
       set({ data: response })
     }
   },
-  // addTodo: (todo) =>
-  //   set((state) => ({
-  //     data: [...state.data, todo],
-  //   })),
+  getTodoById: async (id: string) => {
+    const response: TodoListProps = await getTodoByIdApi(id)
+    if (response) {
+      console.log('id:', response)
+      set({ idData: response })
+    }
+  },
 }))
 
 export default useTodoStore
