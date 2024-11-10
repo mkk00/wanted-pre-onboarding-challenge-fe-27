@@ -1,18 +1,16 @@
-import {
-  AuthWrapper,
-  Form,
-  Button,
-  ErrorMessage,
-} from '@/pages/auth/Auth.styled'
-import { useForm } from '@/hooks/useForm'
+import { Container, Form, Button, ErrorMessage } from '@/pages/auth/Auth.styled'
+import { useAuthForm } from '@/hooks/useAuthForm'
 import AuthSuggestion from '@/components/AuthSuggestion'
 import { Title } from '@/styles/common.styled'
 import { loginApi } from '@/api/authApi'
 import { useNavigate } from 'react-router-dom'
 import { AxiosError } from 'axios'
+import PageLayout from '@/components/layout/PageLayout'
+import { useUserStore } from '@/store/useAuthStore'
 
 function Login() {
   const navigate = useNavigate()
+  const login = useUserStore((state) => state.login)
 
   const onSubmit = async () => {
     if (!errors || Object.keys(errors).length === 0)
@@ -21,11 +19,18 @@ function Login() {
           email: values.email,
           password: values.password,
         })
+        console.log(res)
         if (res) {
           alert(res.message)
 
           if (res.token) {
             localStorage.setItem('token', res.token)
+
+            login({
+              email: values.email,
+              token: res.token,
+            })
+
             navigate('/')
           }
         }
@@ -36,7 +41,7 @@ function Login() {
   }
 
   const { values, errors, handleChange, handleUnForcus, handleSubmit } =
-    useForm(
+    useAuthForm(
       {
         email: '',
         password: '',
@@ -46,8 +51,8 @@ function Login() {
     )
 
   return (
-    <AuthWrapper.Layout>
-      <AuthWrapper.Container>
+    <PageLayout>
+      <Container>
         <Title>로그인</Title>
         <Form.FormWrapper onSubmit={handleSubmit}>
           <div>
@@ -83,8 +88,8 @@ function Login() {
           <Button type="submit">로그인</Button>
         </Form.FormWrapper>
         <AuthSuggestion />
-      </AuthWrapper.Container>
-    </AuthWrapper.Layout>
+      </Container>
+    </PageLayout>
   )
 }
 

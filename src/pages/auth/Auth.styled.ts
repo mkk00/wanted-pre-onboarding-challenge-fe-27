@@ -1,13 +1,5 @@
 import styled from 'styled-components'
 
-const Layout = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f5f5f5;
-`
-
 const Container = styled.div`
   width: 100%;
   max-width: 400px;
@@ -68,8 +60,6 @@ const ErrorMessage = styled.p`
   margin: 0;
 `
 
-export const AuthWrapper = { Layout, Container }
-
 export const Form = {
   FormWrapper,
   InputRow,
@@ -77,4 +67,4 @@ export const Form = {
   Input,
 }
 
-export { Button, ErrorMessage }
+export { Container, Button, ErrorMessage }

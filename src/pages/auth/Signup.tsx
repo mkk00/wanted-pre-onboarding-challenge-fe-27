@@ -1,15 +1,11 @@
-import {
-  AuthWrapper,
-  Form,
-  Button,
-  ErrorMessage,
-} from '@/pages/auth/Auth.styled'
-import { useForm } from '@/hooks/useForm'
+import { Container, Form, Button, ErrorMessage } from '@/pages/auth/Auth.styled'
+import { useAuthForm } from '@/hooks/useAuthForm'
 import AuthSuggestion from '@/components/AuthSuggestion'
 import { Title } from '@/styles/common.styled'
 import { signupApi } from '@/api/authApi'
 import { useNavigate } from 'react-router-dom'
 import { AxiosError } from 'axios'
+import PageLayout from '@/components/layout/PageLayout'
 
 function Signup() {
   const navigate = useNavigate()
@@ -32,7 +28,7 @@ function Signup() {
   }
 
   const { values, errors, handleChange, handleUnForcus, handleSubmit } =
-    useForm(
+    useAuthForm(
       {
         email: '',
         password: '',
@@ -43,8 +39,8 @@ function Signup() {
     )
 
   return (
-    <AuthWrapper.Layout>
-      <AuthWrapper.Container>
+    <PageLayout>
+      <Container>
         <Title>회원가입</Title>
         <Form.FormWrapper onSubmit={handleSubmit}>
           <div>
@@ -97,8 +93,8 @@ function Signup() {
           <Button type="submit">회원가입</Button>
         </Form.FormWrapper>
         <AuthSuggestion isAuth />
-      </AuthWrapper.Container>
-    </AuthWrapper.Layout>
+      </Container>
+    </PageLayout>
   )
 }
 
