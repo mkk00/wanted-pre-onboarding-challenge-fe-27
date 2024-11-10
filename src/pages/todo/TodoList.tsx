@@ -4,19 +4,13 @@ import { BiSolidEditAlt, BiTrash } from 'react-icons/bi'
 import { Title } from '@/styles/common.styled'
 import { useNavigate } from 'react-router-dom'
 import PageLayout from '@/components/layout/PageLayout'
-import { getTodoApi } from '@/api/todoApi'
-import { useEffect, useState } from 'react'
-import { TodoListProps } from '@/interfaces/TodoProps'
+import { useEffect } from 'react'
+import useTodoStore from '@/store/useTodoStore'
 
 function TodoList() {
-  const [data, setData] = useState<TodoListProps[] | []>([])
   const navigate = useNavigate()
-
-  const getTodoList = async () => {
-    const response: TodoListProps[] | null = await getTodoApi()
-
-    if (response && response?.length > 0) setData(response)
-  }
+  const getTodoList = useTodoStore((state) => state.getTodoList)
+  const data = useTodoStore((state) => state.data)
 
   useEffect(() => {
     getTodoList()

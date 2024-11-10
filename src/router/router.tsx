@@ -8,6 +8,10 @@ const router = createBrowserRouter([
     element: <TodoList />,
     children: [
       {
+        path: '/todo',
+        element: <TodoDetail />,
+      },
+      {
         path: ':id',
         element: <TodoDetail />,
       },
