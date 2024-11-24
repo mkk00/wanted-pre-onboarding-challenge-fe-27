@@ -145,7 +145,7 @@ const ButtonWrapper = styled.div`
   justify-content: center;
 `
 
-const Add = styled.button`
+const CommonButton = styled.button`
   background-color: #4a90e2;
   color: white;
   border: none;
@@ -240,7 +240,7 @@ export const Detail = {
 
 export const Button = {
   ButtonWrapper,
-  Add,
+  CommonButton,
   IconButton,
   CloseButton,
   FormButton,

@@ -64,10 +64,7 @@ const TodoDetail = () => {
 
   useEffect(() => {
     if (!id) {
-      setValues({
-        title: '',
-        content: '',
-      })
+      handleReset()
     }
   }, [id])
 
