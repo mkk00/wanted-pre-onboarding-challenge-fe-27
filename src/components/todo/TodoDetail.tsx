@@ -19,6 +19,7 @@ const TodoDetail = () => {
   const getTodoList = useTodoStore((state) => state.getTodoList)
   const getTodoById = useTodoStore((state) => state.getTodoById)
   const idData = useTodoStore((state) => state.idData)
+  const resetTodoList = useTodoStore((state) => state.resetTodoList)
 
   const onSubmit = async () => {
     if (id && isEdit) {
@@ -47,13 +48,11 @@ const TodoDetail = () => {
 
   useEffect(() => {
     if (id) getTodoById(id)
-    console.log(isEdit)
   }, [id, isEdit])
 
   useEffect(() => {
     if (
       idData.title &&
-      idData.content &&
       (idData.title !== values.title || idData.content !== values.content)
     ) {
       setValues({
@@ -71,11 +70,18 @@ const TodoDetail = () => {
       })
     }
   }, [id])
+
   return (
     <TodoWrapper.Container>
       <Todo.Header>
         <h2>할 일 상세</h2>
-        <Button.CloseButton type="button" onClick={() => navigate('/')}>
+        <Button.CloseButton
+          type="button"
+          onClick={() => {
+            resetTodoList()
+            navigate('/')
+          }}
+        >
           <IoCloseOutline size={25} />
         </Button.CloseButton>
       </Todo.Header>

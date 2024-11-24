@@ -9,6 +9,7 @@ interface TodoStore {
   getTodoList: () => Promise<void>
   getTodoById: (id: string) => Promise<void>
   deleteTodoList: (id: string) => Promise<void>
+  resetTodoList: () => void
 }
 
 const useTodoStore = create<TodoStore>((set) => ({
@@ -29,6 +30,14 @@ const useTodoStore = create<TodoStore>((set) => ({
   },
   deleteTodoList: async (id: string) => {
     await deleteTodoApi(id)
+    set({
+      idData: {
+        title: '',
+        content: '',
+      },
+    })
+  },
+  resetTodoList: () => {
     set({
       idData: {
         title: '',
