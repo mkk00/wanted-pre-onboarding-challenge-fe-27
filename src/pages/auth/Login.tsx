@@ -19,7 +19,6 @@ function Login() {
           email: values.email,
           password: values.password,
         })
-        console.log(res)
         if (res) {
           alert(res.message)
 
