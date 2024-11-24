@@ -70,23 +70,23 @@ yarn start # localhost:8080
 
 - 로그인 & 회원가입(/auth/login, /auth/signup)
 
-<img src="https://github.com/user-attachments/assets/1dd74d4e-a63a-40d0-a0f2-a649d65a9d32" style="width: 450px;" />
-<img src="https://github.com/user-attachments/assets/46469d81-5279-4b0e-8b18-5ff906fd5c3a" style="width: 450px;" />
+<img src="https://github.com/user-attachments/assets/1dd74d4e-a63a-40d0-a0f2-a649d65a9d32" style="width: 400px;" />
+<img src="https://github.com/user-attachments/assets/46469d81-5279-4b0e-8b18-5ff906fd5c3a" style="width: 400px;" />
 
 <br/><br/>
 
 - Todo List 조회(/) 및 추가(/todos) · 수정(/todos/[id]) · 삭제
 
-<img src="https://github.com/user-attachments/assets/85227451-d92c-4408-aba7-d5e7517f525f" style="width: 500px;" />
-<img src="https://github.com/user-attachments/assets/41f6aa8e-d944-4302-b152-58d1be9de240" style="width: 500px;" />
+<img src="https://github.com/user-attachments/assets/85227451-d92c-4408-aba7-d5e7517f525f" style="width: 400px;" />
+<img src="https://github.com/user-attachments/assets/41f6aa8e-d944-4302-b152-58d1be9de240" style="width: 400px;" />
 
 
 <br/><br/>
 
 - Todo List 다중 선택 및 삭제
 
-<img src="https://github.com/user-attachments/assets/e585c48e-2123-4df1-88c8-6740b51d31f1" style="width: 500px;" />
-<img src="https://github.com/user-attachments/assets/c788dc56-eebe-46dd-8ba2-4565b21d955e" style="width: 500px;" />
+<img src="https://github.com/user-attachments/assets/3ebcc874-adc0-486b-9cc7-96944a77f0d6" style="width: 400px;" />
+<img src="https://github.com/user-attachments/assets/c788dc56-eebe-46dd-8ba2-4565b21d955e" style="width: 400px;" />
 
 <br/><br/>
 
