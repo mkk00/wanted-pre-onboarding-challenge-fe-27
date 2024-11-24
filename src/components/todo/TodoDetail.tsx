@@ -22,7 +22,8 @@ const TodoDetail = () => {
   const resetTodoList = useTodoStore((state) => state.resetTodoList)
 
   const onSubmit = async () => {
-    if (id && isEdit) {
+    console.log(isEdit)
+    if ((id && isEdit) || (id && idData !== values)) {
       await updateTodoApi(id, {
         title: values.title,
         content: values.content,
