@@ -66,7 +66,7 @@ yarn start # localhost:8080
 
 <br/>
 
-## 레이아웃
+## 레이아웃 및 기능
 
 - 로그인 & 회원가입(/auth/login, /auth/signup)
 
@@ -75,11 +75,18 @@ yarn start # localhost:8080
 
 <br/><br/>
 
-- Todo List & Detail(/, /todos)
+- Todo List 조회(/) 및 추가(/todos) · 수정(/todos/[id]) · 삭제
 
 <img src="https://github.com/user-attachments/assets/85227451-d92c-4408-aba7-d5e7517f525f" style="width: 500px;" />
 <img src="https://github.com/user-attachments/assets/41f6aa8e-d944-4302-b152-58d1be9de240" style="width: 500px;" />
 
+
+<br/><br/>
+
+- Todo List 다중 선택 및 삭제
+
+<img src="https://github.com/user-attachments/assets/e585c48e-2123-4df1-88c8-6740b51d31f1" style="width: 500px;" />
+<img src="https://github.com/user-attachments/assets/c788dc56-eebe-46dd-8ba2-4565b21d955e" style="width: 500px;" />
 
 <br/><br/>
 
